@@ -13,20 +13,16 @@
 export default {
 	data() {
 		return {
-			lists: [
-				{
-					name: '足球',
-					id: '001'
-				},
-				{
-					name: '篮球',
-					id: '002'
-				},
-				{
-					name: '游戏',
-					id: '003'
-				}
-			]
+			lists: '',
+		}
+	},
+	created() {
+		this. getData()
+	},
+	methods: {
+		async getData() {
+			const { data } = await this.$axios.get('../json/test.json')
+			this.lists = data.data;
 		}
 	}
 }

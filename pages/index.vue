@@ -10,6 +10,20 @@ import Logo from '~/components/Logo.vue'
 export default {
   components: {
     Logo
+  },
+  created() {
+    this.getData()
+  },
+  methods: {
+    async getData() {
+      const  { data } = await this.$axios.get('../json/test.json');
+    }
+  },
+  mounted () {
+    this.$nextTick(() => {
+      this.$nuxt.$loading.start()
+      setTimeout(() => this.$nuxt.$loading.finish(), 1000)
+    })
   }
 }
 </script>
@@ -17,7 +31,6 @@ export default {
 <style>
 .container {
   margin: 0 auto;
-  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
